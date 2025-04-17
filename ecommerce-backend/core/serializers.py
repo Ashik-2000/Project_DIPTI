@@ -8,7 +8,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True)  # Nested serializer for category name
+    category = CategorySerializer(read_only=True)
 
     class Meta:
         model = Product

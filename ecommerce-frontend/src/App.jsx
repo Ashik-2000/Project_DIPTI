@@ -1,20 +1,15 @@
-import { useEffect, useState } from "react";
-import { getHello } from "./api/hello";
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/LogIn";
+import ProductList from "./components/ProductList";
+import Signup from "./pages/SignUp";
 
 function App() {
-    const [message, setMessage] = useState("");
-
-    useEffect(() => {
-        getHello().then((data) => {
-            if (data) setMessage(data.message);
-        });
-    }, []);
-
     return (
-        <div>
-            <h1>React + Django E-commerce</h1>
-            <p>Backend says: {message}</p>
-        </div>
+        <Routes>
+            <Route path="/" element={<ProductList />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+        </Routes>
     );
 }
 
