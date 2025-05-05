@@ -1,7 +1,8 @@
+import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./components/home/HomePage";
+import NotFoundPage from "./components/ui/NotFoundPage";
 import MainLayout from "./layout/MainLayout";
-import "bootstrap/dist/css/bootstrap.css";
 
 const App = () => {
     return (
@@ -9,6 +10,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<HomePage />} />
+                    <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </Routes>
         </BrowserRouter>
