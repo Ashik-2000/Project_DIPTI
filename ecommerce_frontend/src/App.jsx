@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./components/home/HomePage";
+import ProductPage from "./components/product/ProductPage";
 import NotFoundPage from "./components/ui/NotFoundPage";
 import MainLayout from "./layout/MainLayout";
 
@@ -10,6 +11,10 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<HomePage />} />
+                    <Route
+                        path="products/:slug"
+                        element={<ProductPage />}
+                    ></Route>
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </Routes>
