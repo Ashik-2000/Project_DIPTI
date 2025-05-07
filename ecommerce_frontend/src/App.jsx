@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import api from "./api";
+import CartPage from "./components/cart/CartaPage";
 import HomePage from "./components/home/HomePage";
 import ProductPage from "./components/product/ProductPage";
 import NotFoundPage from "./components/ui/NotFoundPage";
@@ -22,7 +23,7 @@ const App = () => {
                     console.log(err.message);
                 });
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -40,7 +41,8 @@ const App = () => {
                                 setNumberCartItems={setNumberCartItems}
                             />
                         }
-                    ></Route>
+                    />
+                    <Route path="cart" element={<CartPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </Routes>
