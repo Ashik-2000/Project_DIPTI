@@ -3,7 +3,7 @@ import api from "../../api";
 import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
 
-const CartPage = () => {
+const CartPage = ({ setNumberCartItems }) => {
     const cart_code = localStorage.getItem("cart_code");
     const [cartitems, setCartItems] = useState([]);
     const [cartTotal, setCartTotal] = useState(0.0);
@@ -42,7 +42,13 @@ const CartPage = () => {
             <div className="row">
                 <div className="col-md-8">
                     {cartitems.map((item) => (
-                        <CartItem key={item.id} item={item} />
+                        <CartItem
+                            key={item.id}
+                            item={item}
+                            cartitems={cartitems}
+                            setCartTotal={setCartTotal}
+                            setNumberCartItems={setNumberCartItems}
+                        />
                     ))}
                 </div>
                 <CartSummary cartTotal={cartTotal} tax={tax} />
