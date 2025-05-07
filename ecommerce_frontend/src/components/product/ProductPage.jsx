@@ -9,13 +9,27 @@ const ProductPage = () => {
     const [product, setProduct] = useState({});
     const [similarProducts, setSimilarProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [inCart, setInCart] = useState(false);
+    const cart_code = localStorage.getItem("cart_code");
+
+    const newItem = { cart_code: cart_code, product_id: product.id };
+
+    function add_item() {
+        api.post("add_item", newItem)
+            .then((res) => {
+                console.log(res.data);
+                setInCart(true);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }
 
     useEffect(
         function () {
             setLoading(true);
             api.get(`product_detail/${slug}`)
                 .then((res) => {
-                    console.log(res.data);
                     setProduct(res.data);
                     setSimilarProducts(res.data.similar_products);
                     setLoading(false);
@@ -63,9 +77,13 @@ const ProductPage = () => {
                                 <button
                                     className="btn btn-outline-dark flex-shrink-0"
                                     type="button"
+                                    onClick={add_item}
+                                    disabled={inCart}
                                 >
                                     <i className="bi-cart-fill me-1"></i>
-                                    Add to Cart
+                                    {inCart
+                                        ? "Product added to the cart"
+                                        : "Add to cart"}
                                 </button>
                             </div>
                         </div>

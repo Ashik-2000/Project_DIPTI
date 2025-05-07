@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../api";
+import { randomValue } from "../../GenerateCartCode";
 import Error from "../ui/Error";
 import PlaceHolderContainer from "../ui/PlaceHolderContainer";
 import CardContainer from "./CardContainer";
@@ -9,6 +10,12 @@ const HomePage = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+
+    useEffect(function () {
+        if (localStorage.getItem("cart_code") === null) {
+            localStorage.setItem("cart_code", randomValue);
+        }
+    }, []);
 
     useEffect(function () {
         setLoading(true);
