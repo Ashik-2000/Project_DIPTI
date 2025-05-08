@@ -7,6 +7,8 @@ import CheckoutPage from "./components/checkout/CheckOutPage";
 import HomePage from "./components/home/HomePage";
 import ProductPage from "./components/product/ProductPage";
 import NotFoundPage from "./components/ui/NotFoundPage";
+import ProtectedRoute from "./components/ui/ProtectedRoute";
+import LoginPage from "./components/user/LoginPage";
 import MainLayout from "./layout/MainLayout";
 
 const App = () => {
@@ -49,7 +51,15 @@ const App = () => {
                             <CartPage setNumberCartItems={setNumberCartItems} />
                         }
                     />
-                    <Route path="checkout" element={<CheckoutPage />} />
+                    <Route
+                        path="checkout"
+                        element={
+                            <ProtectedRoute>
+                                <CheckoutPage />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route path="login" element={<LoginPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </Routes>
