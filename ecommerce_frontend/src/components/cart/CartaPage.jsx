@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../api";
+import Spinner from "../ui/Spinner";
 import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
 
@@ -7,23 +8,31 @@ const CartPage = ({ setNumberCartItems }) => {
     const cart_code = localStorage.getItem("cart_code");
     const [cartitems, setCartItems] = useState([]);
     const [cartTotal, setCartTotal] = useState(0.0);
+    const [loading, setLoading] = useState(false);
     const tax = 4.0;
 
     useEffect(
         function () {
+            setLoading(true);
             api.get(`get_cart?cart_code=${cart_code}`)
                 .then((res) => {
                     console.log(res.data);
+                    setLoading(false);
                     setCartItems(res.data.items);
                     setCartTotal(res.data.sum_total);
                 })
                 .catch((err) => {
                     console.log(err.message);
+                    setLoading(false);
                 });
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         []
     );
+
+    if (loading) {
+        return <Spinner />;
+    }
 
     if (cartitems.length < 1) {
         return (
