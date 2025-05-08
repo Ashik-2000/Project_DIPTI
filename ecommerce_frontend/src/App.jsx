@@ -9,6 +9,7 @@ import ProductPage from "./components/product/ProductPage";
 import NotFoundPage from "./components/ui/NotFoundPage";
 import ProtectedRoute from "./components/ui/ProtectedRoute";
 import LoginPage from "./components/user/LoginPage";
+import { AuthProvider } from "./context/AuthContext";
 import MainLayout from "./layout/MainLayout";
 
 const App = () => {
@@ -30,40 +31,44 @@ const App = () => {
     }, []);
 
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route
-                    path="/"
-                    element={<MainLayout numCartItems={numCartItems} />}
-                >
-                    <Route index element={<HomePage />} />
+        <AuthProvider>
+            <BrowserRouter>
+                <Routes>
                     <Route
-                        path="products/:slug"
-                        element={
-                            <ProductPage
-                                setNumberCartItems={setNumberCartItems}
-                            />
-                        }
-                    />
-                    <Route
-                        path="cart"
-                        element={
-                            <CartPage setNumberCartItems={setNumberCartItems} />
-                        }
-                    />
-                    <Route
-                        path="checkout"
-                        element={
-                            <ProtectedRoute>
-                                <CheckoutPage />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route path="login" element={<LoginPage />} />
-                    <Route path="*" element={<NotFoundPage />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
+                        path="/"
+                        element={<MainLayout numCartItems={numCartItems} />}
+                    >
+                        <Route index element={<HomePage />} />
+                        <Route
+                            path="products/:slug"
+                            element={
+                                <ProductPage
+                                    setNumberCartItems={setNumberCartItems}
+                                />
+                            }
+                        />
+                        <Route
+                            path="cart"
+                            element={
+                                <CartPage
+                                    setNumberCartItems={setNumberCartItems}
+                                />
+                            }
+                        />
+                        <Route
+                            path="checkout"
+                            element={
+                                <ProtectedRoute>
+                                    <CheckoutPage />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path="login" element={<LoginPage />} />
+                        <Route path="*" element={<NotFoundPage />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </AuthProvider>
     );
 };
 export default App;

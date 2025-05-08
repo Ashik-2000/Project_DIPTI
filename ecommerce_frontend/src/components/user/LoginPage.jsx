@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../../api";
+import { AuthContext } from "../../context/AuthContext";
 import Error from "../ui/Error";
 import "./LoginPage.css";
 
 export default function LoginPage() {
+    const { setIsAuthenticated } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -27,7 +29,8 @@ export default function LoginPage() {
                 setPassword("");
                 setLoading(false);
                 setError("");
-                const from = location.state.from.pathname || "/";
+                setIsAuthenticated(true);
+                const from = location?.state?.from.pathname || "/";
                 navigate(from, { replace: true });
             })
             .catch((err) => {
