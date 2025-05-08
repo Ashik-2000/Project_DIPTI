@@ -48,6 +48,7 @@ const CartPage = ({ setNumberCartItems }) => {
                             cartitems={cartitems}
                             setCartTotal={setCartTotal}
                             setNumberCartItems={setNumberCartItems}
+                            setCartItems={setCartItems}
                         />
                     ))}
                 </div>
