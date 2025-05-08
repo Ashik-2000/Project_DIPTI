@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import api, { BASE_URL } from "../../api";
 import ProductPagePlaceHolder from "./ProductPagePlaceHolder";
 import RelatedProducts from "./RelatedProducts";
@@ -37,6 +38,7 @@ const ProductPage = ({ setNumberCartItems }) => {
             .then((res) => {
                 console.log(res.data);
                 setInCart(true);
+                toast.success("Product added to cart");
                 setNumberCartItems((curr) => curr + 1);
             })
             .catch((err) => {

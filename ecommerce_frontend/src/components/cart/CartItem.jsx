@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api, { BASE_URL } from "../../api";
+import { toast } from "react-toastify";
 
 const CartItem = ({ item, setCartTotal, cartitems, setNumberCartItems }) => {
     const [quantity, setQuantity] = useState(item.quantity);
@@ -12,6 +13,7 @@ const CartItem = ({ item, setCartTotal, cartitems, setNumberCartItems }) => {
             .then((res) => {
                 console.log(res.data);
                 setLoading(false);
+                toast.success("Cart item updated successfully")
                 setCartTotal(
                     cartitems
                         .map((cartitem) =>
