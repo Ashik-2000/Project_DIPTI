@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import api from "./api";
 import CartPage from "./components/cart/CartaPage";
+import CheckoutPage from "./components/checkout/CheckOutPage";
 import HomePage from "./components/home/HomePage";
 import ProductPage from "./components/product/ProductPage";
 import NotFoundPage from "./components/ui/NotFoundPage";
@@ -42,7 +43,13 @@ const App = () => {
                             />
                         }
                     />
-                    <Route path="cart" element={<CartPage setNumberCartItems={setNumberCartItems}/>} />
+                    <Route
+                        path="cart"
+                        element={
+                            <CartPage setNumberCartItems={setNumberCartItems} />
+                        }
+                    />
+                    <Route path="checkout" element={<CheckoutPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </Routes>
