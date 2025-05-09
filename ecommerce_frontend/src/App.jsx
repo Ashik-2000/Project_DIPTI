@@ -9,6 +9,7 @@ import ProductPage from "./components/product/ProductPage";
 import NotFoundPage from "./components/ui/NotFoundPage";
 import ProtectedRoute from "./components/ui/ProtectedRoute";
 import LoginPage from "./components/user/LoginPage";
+import UserProfilePage from "./components/user/UserProfilePage";
 import { AuthProvider } from "./context/AuthContext";
 import MainLayout from "./layout/MainLayout";
 
@@ -64,6 +65,7 @@ const App = () => {
                             }
                         />
                         <Route path="login" element={<LoginPage />} />
+                        <Route path="profile" element={<UserProfilePage />} />
                         <Route path="*" element={<NotFoundPage />} />
                     </Route>
                 </Routes>

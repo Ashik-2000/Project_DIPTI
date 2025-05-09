@@ -1,16 +1,15 @@
+import { FaUser } from "react-icons/fa";
 import styles from "./userInfo.module.css";
 
-const UserInfo = () => {
+const UserInfo = ({ userInfo }) => {
     return (
         <div className="row mb-4">
             <div className={`col-md-3 py-3 card ${styles.textCenter}`}>
-                <img
-                    src="pic"
-                    alt="User Profile"
+                <FaUser
                     className={`img-fluid rounded-circle mx-auto ${styles.profileImage}`}
                 />
-                <h4>John Doe</h4>
-                <p className="text-muted">john.doe@example.com</p>
+                <h4>{`${userInfo.first_name} ${userInfo.last_name}`}</h4>
+                <p className="text-muted">{userInfo.email}</p>
                 <button
                     className="btn mt-2"
                     style={{ backgroundColor: "#6050DC", color: "white" }}
@@ -30,24 +29,29 @@ const UserInfo = () => {
                         <div className="row">
                             <div className="col-md-6">
                                 <p>
-                                    <strong>Full Name:</strong> John Doe
+                                    <strong>UserName:</strong>{" "}
+                                    {userInfo.username}
                                 </p>
                                 <p>
-                                    <strong>Email:</strong> john.doe@example.com
+                                    <strong>Email:</strong> {userInfo.email}
                                 </p>
                                 <p>
-                                    <strong>Phone:</strong> +123 456 7890
+                                    <strong>Phone:</strong> {userInfo.phone}
+                                </p>
+                                <p>
+                                    <strong>User ID:</strong> {userInfo.id}
                                 </p>
                             </div>
                             <div className="col-md-6">
                                 <p>
-                                    <strong>City:</strong> New York
+                                    <strong>Full Name:</strong>{" "}
+                                    {`${userInfo.first_name} ${userInfo.last_name}`}
                                 </p>
                                 <p>
-                                    <strong>Country:</strong> USA
+                                    <strong>City:</strong> {userInfo.city}
                                 </p>
                                 <p>
-                                    <strong>Member Since:</strong> January 2023
+                                    <strong>Country:</strong> {userInfo.state}
                                 </p>
                             </div>
                         </div>
