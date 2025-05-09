@@ -6,7 +6,7 @@ import Error from "../ui/Error";
 import "./LoginPage.css";
 
 export default function LoginPage() {
-    const { setIsAuthenticated } = useContext(AuthContext);
+    const { setIsAuthenticated, get_username } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -28,8 +28,9 @@ export default function LoginPage() {
                 setUsername("");
                 setPassword("");
                 setLoading(false);
-                setError("");
                 setIsAuthenticated(true);
+                get_username();
+                setError("");
                 const from = location?.state?.from.pathname || "/";
                 navigate(from, { replace: true });
             })
