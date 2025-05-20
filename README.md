@@ -54,23 +54,16 @@ npm install
 npm start
 ```
 
-### Project Structure
-
-Project-DIPTI/
-│
-├── ecommerce_backend/               # Django project (API, models, auth)
-│   └── ...
-│
-├── ecommerce_frontend/              # React project (UI, views, cart)
-│   └── ...
-│
-└── README.md
-
-
 ### Current Limitations
- - No user registration yet
- - No product listing/search
- - No admin dashboard
- - No deployment
+- No user registration yet
+- No product listing/search
+- No admin dashboard
+- No deployment
+
+### Future Features
+- User Registration
+- Payment Gateway Integration (e.g., Stripe, SSLCommerz)
+- Product Search & Listing
+- Admin Panel for Product Management
 
 
